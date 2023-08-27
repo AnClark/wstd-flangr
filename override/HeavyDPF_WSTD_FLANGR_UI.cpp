@@ -205,6 +205,8 @@ protected:
                     ImGui::PushFont(smallFont);
                     auto rangedef = (frange) ? "fast": "slow";
                     CenterTextX(rangedef, toggleWidth);
+                    ImGui::PopFont();
+
                     ImGui::PushFont(defaultFont);
                     ImGui::PopStyleColor();
 
@@ -229,6 +231,8 @@ protected:
                         }
                     }
                     ImGui::PopStyleColor(5);
+
+                    ImGui::PopFont();
                 }
                 ImGui::EndGroup();
             }
@@ -272,7 +276,10 @@ protected:
                 editParameter(2, false);
                 editParameter(3, false);
             }
+
+            ImGui::PopFont();
         }
+        ImGui::PopFont();
         ImGui::End();
     }
 
