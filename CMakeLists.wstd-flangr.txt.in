@@ -1,0 +1,51 @@
+#  CMakeLists.wstd-flangr.txt.in
+#  Template CMakeLists.txt for generated WSTD-Flangr plugin source tree.
+#
+#  Copyright (C) 2023 AnClark Liu
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+cmake_minimum_required (VERSION 3.20)
+
+project (WSTD_FLANGR
+    LANGUAGES C CXX
+    VERSION @PROJECT_VERSION@
+)
+
+set (PLUGIN_SRC_DIR @HVCC_OUTPUT_DIR@/plugin/source)
+
+file (GLOB SRC_DSP_CPP ${PLUGIN_SRC_DIR}/*.cpp)
+file (GLOB SRC_DSP_C ${PLUGIN_SRC_DIR}/*.c)
+
+add_subdirectory (@DPF_DIR@ ${PROJECT_BINARY_DIR}/dpf.out)
+
+dpf_add_plugin (${PROJECT_NAME}
+    TARGETS vst2 vst3 lv2 clap
+    FILES_DSP
+        ${SRC_DSP_CPP}
+        ${SRC_DSP_C}
+    FILES_UI
+        ${PLUGIN_SRC_DIR}/HeavyDPF_WSTD_FLANGR_UI.cpp
+        @DPF_WIDGETS_DIR@/opengl/DearImGui.cpp
+    MODGUI_CLASS_NAME hv_WSTD_FLANGR
+)
+
+target_include_directories (${PROJECT_NAME} PUBLIC
+    ${PLUGIN_SRC_DIR}
+    @DPF_DIR@/dgl
+    @DPF_WIDGETS_DIR@/generic
+    @DPF_WIDGETS_DIR@/opengl
+    @WSTD_CLRS_DIR@
+)
