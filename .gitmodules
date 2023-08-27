@@ -10,3 +10,6 @@
 [submodule "dep/wstd.clrs"]
 	path = dep/wstd.clrs
 	url = git@github.com:Wasted-Audio/wstd.clrs.git
+[submodule "dep/hvcc"]
+	path = dep/hvcc
+	url = https://github.com/Wasted-Audio/hvcc.git
