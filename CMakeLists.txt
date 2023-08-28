@@ -125,7 +125,7 @@ ExternalProject_Add (build_wstd_flangr
     SOURCE_DIR ${HVCC_OUTPUT_DIR}
     DEPENDS cmd_hvcc_build cmd_copy_generated_cmake_file
 
-    CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+    CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
 
     INSTALL_COMMAND ${CMAKE_COMMAND} -E echo "Plugin built successfully. Copying files..."
     COMMAND ${CMAKE_COMMAND} -E copy_directory "<BINARY_DIR>/bin" "${PROJECT_BINARY_DIR}/bin"
